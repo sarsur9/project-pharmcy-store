@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import React from "react";
-
 const Container = styled.div`
   flex: 1;
   margin: 3px;
@@ -19,12 +18,13 @@ const Info = styled.div`
   width: 100%;
   height: 90%;
   display: flex;
-
   flex-direction: column;
   align-items: center;
   justify-content: center;
 `;
 const Title = styled.h1`
+  color: white;
+  margin-bottom: 20px;
   color: black;
   margin-bottom: 10px;
   font-weight: 700;
@@ -37,7 +37,6 @@ const Button = styled.button`
   cursor: pointer;
   font-weight: 600;
 `;
-
 const CategoriesItem = ({ item }) => {
   return (
     <Container>
@@ -49,5 +48,4 @@ const CategoriesItem = ({ item }) => {
     </Container>
   );
 };
-
 export default CategoriesItem;
