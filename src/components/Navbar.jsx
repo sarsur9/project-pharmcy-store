@@ -56,11 +56,11 @@ const Navbar = () => {
           <Language>EN</Language>
           <SearchContainer>
             <Input />
+            <Input placeholder="Search" />
             <Search style={{ color: "gray", fontSize: 18 }} />
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>S.H.O.P</Logo>
           <Logo>Pharmacy-Online</Logo>
         </Center>
         <Right>
