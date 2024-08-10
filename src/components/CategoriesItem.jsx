@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import React from "react";
+import { mobile } from "../responsive";
+
+
 const Container = styled.div`
   flex: 1;
   margin: 3px;
@@ -10,6 +13,7 @@ const Image = styled.img`
   width: 100%;
   height: 90%;
   object-fit: cover;
+  ${mobile({ height: "32vh" })}
 `;
 const Info = styled.div`
   position: absolute;
@@ -23,8 +27,6 @@ const Info = styled.div`
   justify-content: center;
 `;
 const Title = styled.h1`
-  color: white;
-  margin-bottom: 20px;
   color: black;
   margin-bottom: 10px;
   font-weight: 700;
