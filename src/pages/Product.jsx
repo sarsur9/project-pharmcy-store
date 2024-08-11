@@ -10,9 +10,7 @@ import { useEffect, useState } from "react";
 import { publicRequest } from "../requestMethods";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../redux/cartRedux";
-
 const Container = styled.div``;
-
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
@@ -100,9 +98,7 @@ const Product = () => {
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState("");
-
    const dispatch = useDispatch();
-
   useEffect(() => {
     const getProduct = async () => {
       try {
@@ -120,7 +116,9 @@ const Product = () => {
     }
   };
    const handleClick = () => {
-    dispatch(addProduct({ ...product, quantity, size }));
+if (size === "") setSize(product.size[0]);
+
+   dispatch(addProduct({ ...product, quantity, size }));
   };
 
   return (
