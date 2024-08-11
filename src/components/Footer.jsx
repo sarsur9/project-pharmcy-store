@@ -2,7 +2,6 @@ import { Facebook, Instagram, Room, Twitter } from "@material-ui/icons";
 import React from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
-
 const Container = styled.div`
   display: flex;
   ${mobile({ flexDirection: "column" })}
@@ -36,7 +35,6 @@ const Center = styled.div`
   padding: 20px;
   ${mobile({ display: "none" })}
 `;
-
 const Title = styled.h3`
   margin-bottom: 30px;
 `;
@@ -67,7 +65,7 @@ const Footer = () => {
   return (
     <Container>
       <Left>
-        <Logo>S.H.O.P</Logo>
+        <Logo>Pharmacy-Online</Logo>
         <Desc>this is a footer with social media links, nice to have.</Desc>
         <SocialContainer>
           <SocialIcon color="#3B5999">

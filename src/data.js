@@ -1,18 +1,18 @@
-import logo from "./images/landing3.png";
 
+import logo from "./images/landing3.png";
 export const sliderItems = [
   {
     id: 1,
     img: logo,
     title: "DYNAMIC",
-    desc: "DONE WITH STYLED COMPONENTS⏰ ",
+    desc: "UI DONE WITH REACT/REDUX+ STYLED COMPONENTS⏰ ",
     bg: "white",
   },
   {
     id: 2,
     img: logo,
-    title: "Sale 2",
-    desc: "30% OFF! LIMITED TIME OFFER ⏰ ",
+    title: "RESTapi",
+    desc: "MONGODB,STRIPE &J WT ⏰ ",
     bg: "white",
   },
   {
@@ -28,16 +28,19 @@ export const categories = [
     id: 1,
     img: "https://i.pinimg.com/564x/16/a1/c0/16a1c087dd1a84fb532e8706daaebe0c.jpg",
     title: "Over The Counter Medicine",
+    cat: "OTC"
   },
   {
     id: 2,
     img: "https://i.pinimg.com/564x/c4/90/11/c490116beaeeaa185b20d14efd3ee262.jpg",
     title: "Prescription Medicine",
+    cat: "Prescriptiom Medicine"
   },
   {
     id: 3,
     img: "https://i.pinimg.com/564x/c7/e6/84/c7e68446a191c33c8bce25e250d8602d.jpg",
     title: "Supplements",
+    cat: "Health"
   },
 ];
 
