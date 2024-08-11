@@ -1,16 +1,16 @@
 import { Badge } from "@material-ui/core";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
-
 import React from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { useSelector } from "react-redux";
+
 
 
 const Container = styled.div`
   height: 60px;
   ${mobile({ height: "50px" })}
 `;
-
 const Wrapper = styled.div`
   padding: 10px 20px;
   display: flex;
@@ -18,7 +18,6 @@ const Wrapper = styled.div`
   justify-content: space-between;
   ${mobile({ padding: "10px 0px" })}
 `;
-
 const Left = styled.div`
   flex: 1;
   display: flex;
@@ -36,12 +35,10 @@ const SearchContainer = styled.div`
   margin-left: 25px;
   padding: 5px;
 `;
-
 const Input = styled.input`
   border: none;
   ${mobile({ width: "50px" })}
 `;
-
 const Center = styled.div`
   flex: 1;
   text-align: center;
@@ -57,7 +54,6 @@ const Right = styled.div`
   justify-content: flex-end;
   ${mobile({ flex: 2, justifyContent: "center" })}
 `;
-
 const MenuItem = styled.div`
   font-size: 14px;
   cursor: pointer;
@@ -66,6 +62,8 @@ const MenuItem = styled.div`
 `;
 
 const Navbar = () => {
+  const quantity = useSelector((state) => state.cart.quantity);
+  console.log(quantity);
   return (
     <Container>
       <Wrapper>
@@ -83,7 +81,7 @@ const Navbar = () => {
           <MenuItem>Register</MenuItem>
           <MenuItem>Sign In</MenuItem>
           <MenuItem>
-            <Badge badgeContent={4} color="primary">
+            <Badge badgeContent={quantity} color="primary">
               <ShoppingCartOutlined />
             </Badge>
           </MenuItem>
