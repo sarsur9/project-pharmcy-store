@@ -5,6 +5,10 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
 import { useSelector } from "react-redux";
+import StripeCheckout from "react-stripe-checkout";
+import { useState } from "react";
+
+const KEY = process.env.REACT_APP_STRIPE;
 
 
 const Container = styled.div``;
@@ -119,7 +123,12 @@ const Button = styled.button`
 
 const Cart = () => {
     const cart = useSelector((state) => state.cart);
+    const [stripeToken, setStripeToken] = useState(null);
 
+    const onToken = (token) => {
+      setStripeToken(token);
+    };
+    console.log(stripeToken);
   return (
     <Container>
       <Navbar />
@@ -188,7 +197,18 @@ const Cart = () => {
               <SummaryItemText> Total</SummaryItemText>
               <SummaryItemPrice>{cart.total}</SummaryItemPrice>
             </SummaryItem>
-            <Button>CHECKOUT</Button>
+            <StripeCheckout
+              name="Pharmacy Online"
+              image="https://i.pinimg.com/474x/54/16/a9/5416a98f16e3c36536e60e5e140120f6.jpg"
+              billingAddress
+              shippingAddress
+              description={`Your total is $${cart.total}`}
+              amount={cart.total * 100}
+              token={onToken}
+              stripeKey={KEY}
+            >
+              <Button>CHECKOUT NOW</Button>
+            </StripeCheckout>
           </Summary>
         </Bottom>
       </Wrapper>
