@@ -34,7 +34,7 @@ export const categories = [
     id: 2,
     img: "https://i.pinimg.com/564x/c4/90/11/c490116beaeeaa185b20d14efd3ee262.jpg",
     title: "Prescription Medicine",
-    cat: "Prescriptiom Medicine"
+    cat: "PrescriptiomMedicine"
   },
   {
     id: 3,
