@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
-
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { login, register } from "../redux/apiCalls";
+import { useSelector } from "react-redux";
 
 const Container = styled.div`
   width: 100vw;
@@ -48,7 +51,18 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
 `;
+
 const Register = () => {
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const dispatch = useDispatch();
+    const { isFetching, error } = useSelector((state) => state.user);
+    const handleClick = async (e) => {
+      e.preventDefault();
+      await register(dispatch, { username, email, password });
+      login(dispatch, { username, email, password });
+    };
   return (
     <Container>
       <Wrapper>
@@ -56,15 +70,25 @@ const Register = () => {
         <Form>
           <Input placeholder="name"></Input>
           <Input placeholder="last name"></Input>
-          <Input placeholder="username"></Input>
-          <Input placeholder="email"></Input>
-          <Input placeholder="password"></Input>
-          <Input placeholder="confirm password"></Input>
+          <Input
+            placeholder="username"
+            onChange={(e) => setUsername(e.target.value)}
+          ></Input>
+          <Input
+            placeholder="email"
+            onChange={(e) => setEmail(e.target.value)}
+          ></Input>
+          <Input
+            placeholder="password"
+            onChange={(e) => setPassword(e.target.value)}
+          ></Input>
           <Agreement>
             By creating an account, I have read and agreed with the{" "}
             <b>PRIVACY POLICY</b>
           </Agreement>
-          <Button>CREATE</Button>
+          <Button onClick={handleClick} disabled={isFetching} redirect="/">
+            CREATE
+          </Button>
         </Form>
       </Wrapper>
     </Container>

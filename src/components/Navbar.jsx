@@ -8,9 +8,6 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logoutUser } from "../redux/apiCalls";
 import { logout } from "../redux/userRedux";
-
-
-
 const Container = styled.div`
   height: 60px;
   ${mobile({ height: "50px" })}
@@ -61,15 +58,15 @@ const Right = styled.div`
 const MenuItem = styled.div`
   font-size: 14px;
   cursor: pointer;
-  margin-left: 25px;
-  ${mobile({ fontSize: "12px", marginLeft: "10px" })}
+  margin-left: 15px;
+  ${mobile({ fontSize: "12px", marginLeft: "5px" })}
 `;
 
 const Button = styled.button`
   font-size: 14px;
   cursor: pointer;
-  margin-left: 25px;
-  ${mobile({ fontSize: "12px", marginLeft: "10px" })}
+  margin-left: 0px;
+  ${mobile({ fontSize: "12px", marginLeft: "0px" })}
 `;
 
 const Navbar = () => {
@@ -110,7 +107,6 @@ const Navbar = () => {
               <Button onClick={handleClick}>logout</Button>
             </MenuItem>
           )}
-
           <Link to="/cart">
             <MenuItem>
               <Badge badgeContent={quantity} color="primary">
