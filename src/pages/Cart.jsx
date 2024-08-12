@@ -6,9 +6,14 @@ import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
 import { useSelector } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { userRequest } from "../requestMethods";
+import { useHistory } from "react-router";
+
 const KEY = process.env.REACT_APP_STRIPE;
+
 const Container = styled.div``;
+
 const Wrapper = styled.div`
   padding: 20px;
   ${mobile({ padding: "10px" })}
@@ -67,8 +72,11 @@ const Details = styled.div`
   justify-content: space-around;
 `;
 const ProductName = styled.span``;
+
 const ProductId = styled.span``;
+
 const ProductSize = styled.span``;
+
 const PriceDetail = styled.div`
   flex: 1;
   display: flex;
@@ -117,13 +125,36 @@ const Button = styled.button`
   color: white;
   font-weight: 600;
 `;
+
 const Cart = () => {
-    const cart = useSelector((state) => state.cart);
-    const [stripeToken, setStripeToken] = useState(null);
-    const onToken = (token) => {
-      setStripeToken(token);
+  const cart = useSelector((state) => state.cart);
+  const [stripeToken, setStripeToken] = useState(null);
+
+
+  const history = useHistory();
+  const onToken = (token) => {
+    console.log(token);
+    setStripeToken(token);
+  };
+  console.log(stripeToken);
+  useEffect(() => {
+    const makeRequest = async () => {
+      try {
+        const res = await userRequest.post("/checkout/payment", {
+          tokenId: stripeToken.id,
+          amount: 500,
+        });
+        history.push("/success", {
+          stripeData: res.data,
+          products: cart,
+        });
+      } catch (err) {
+        console.log(err);
+      }
     };
-    console.log(stripeToken);
+    stripeToken && cart.total >= 1 && makeRequest();
+    console.log(cart.total);
+  }, [stripeToken, cart.total, history]);
   return (
     <Container>
       <Navbar />
@@ -201,7 +232,7 @@ const Cart = () => {
               amount={cart.total * 100}
               token={onToken}
               stripeKey={
-                "sk_test_51PluRQIKm3oxgWygXpas6BkEj5lWOaXLfD8w17V6zSgL6mRzztAErAT46TqKM73X00pd6RVChQaatPVEJBsB8ATh003n8BpUC3"
+                "pk_test_51PluRQIKm3oxgWygISEtvjfiQGFSnMuFrHcbQueLHgK4UwuhzbF3ohk2tbOq998t9tqZI64O7vnYMUT16ZAUZXBD00ddJj75yu"
               }
             >
               <Button>CHECKOUT NOW</Button>
