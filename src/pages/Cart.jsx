@@ -7,10 +7,7 @@ import { mobile } from "../responsive";
 import { useSelector } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";
 import { useState } from "react";
-
 const KEY = process.env.REACT_APP_STRIPE;
-
-
 const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 20px;
@@ -120,11 +117,9 @@ const Button = styled.button`
   color: white;
   font-weight: 600;
 `;
-
 const Cart = () => {
     const cart = useSelector((state) => state.cart);
     const [stripeToken, setStripeToken] = useState(null);
-
     const onToken = (token) => {
       setStripeToken(token);
     };
@@ -205,7 +200,9 @@ const Cart = () => {
               description={`Your total is $${cart.total}`}
               amount={cart.total * 100}
               token={onToken}
-              stripeKey={KEY}
+              stripeKey={
+                "sk_test_51PluRQIKm3oxgWygXpas6BkEj5lWOaXLfD8w17V6zSgL6mRzztAErAT46TqKM73X00pd6RVChQaatPVEJBsB8ATh003n8BpUC3"
+              }
             >
               <Button>CHECKOUT NOW</Button>
             </StripeCheckout>
