@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login, register } from "../redux/apiCalls";
 import { useSelector } from "react-redux";
-
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -51,17 +50,18 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
 `;
-
 const Register = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
     const { isFetching, error } = useSelector((state) => state.user);
+
     const handleClick = async (e) => {
       e.preventDefault();
       await register(dispatch, { username, email, password });
       login(dispatch, { username, email, password });
+
     };
   return (
     <Container>
