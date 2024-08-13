@@ -3,13 +3,10 @@ import { loginFailure, loginStart, loginSuccess, logout } from "./userRedux";
 
 export const register = async (dispatch, user) => {
   console.log(user);
-  try {
-    const res = await publicRequest.post("/auth/register", user);
-    // Handle the response if needed, e.g., dispatch some action or log it
-  } catch (err) {
-    console.log(err);
-  }
+  
+  const res = await publicRequest.post("/auth/register", user);
 };
+
 
 export const login = async (dispatch, user) => {
   console.log(user);
@@ -22,8 +19,6 @@ export const login = async (dispatch, user) => {
     dispatch(loginFailure());
   }
 };
-
 export const logoutUser = async (dispatch, user) => {
   dispatch(logout());
-
 };

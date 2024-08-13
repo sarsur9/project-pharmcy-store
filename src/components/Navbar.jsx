@@ -8,6 +8,10 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logoutUser } from "../redux/apiCalls";
 import { logout } from "../redux/userRedux";
+import { clearCart } from "../redux/cartRedux";
+
+
+
 const Container = styled.div`
   height: 60px;
   ${mobile({ height: "50px" })}
@@ -61,40 +65,40 @@ const MenuItem = styled.div`
   margin-left: 15px;
   ${mobile({ fontSize: "12px", marginLeft: "5px" })}
 `;
-
 const Button = styled.button`
   font-size: 14px;
   cursor: pointer;
   margin-left: 0px;
   ${mobile({ fontSize: "12px", marginLeft: "0px" })}
 `;
-
 const Navbar = () => {
   const user = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
   const quantity = useSelector((state) => state.cart.quantity);
  console.log(user);
- const handleClick = (e) => {
-   e.preventDefault();
-   logoutUser(dispatch);
- };
+const handleClick = async (e) => {
+  await dispatch(clearCart());
+  logoutUser(dispatch);
+};
   return (
     <Container>
       <Wrapper>
         <Left>
           <Language>EN</Language>
-          <SearchContainer>
+          {/* <SearchContainer>
             <Input placeholder="Search" />
             <Search style={{ color: "gray", fontSize: 18 }} />
-          </SearchContainer>
+          </SearchContainer>*/}
         </Left>
         <Center>
           <Logo>Pharmacy-Online</Logo>
         </Center>
         <Right>
-          <MenuItem>
-            <Link to="/register">Register</Link>
-          </MenuItem>
+          {!user && (
+            <MenuItem>
+              <Link to="/register">Register</Link>
+            </MenuItem>
+          )}
           {!user && (
             <MenuItem>
               {" "}
@@ -104,16 +108,19 @@ const Navbar = () => {
           {user && (
             <MenuItem>
               {" "}
-              <Button onClick={handleClick}>logout</Button>
+              <Link to="/" onClick={handleClick}>logout</Link>
             </MenuItem>
           )}
-          <Link to="/cart">
-            <MenuItem>
-              <Badge badgeContent={quantity} color="primary">
-                <ShoppingCartOutlined />
-              </Badge>
-            </MenuItem>
-          </Link>
+
+          {user && (
+            <Link to="/cart">
+              <MenuItem>
+                <Badge badgeContent={quantity} color="primary">
+                  <ShoppingCartOutlined />
+                </Badge>
+              </MenuItem>
+            </Link>
+          )}
         </Right>
       </Wrapper>
     </Container>
