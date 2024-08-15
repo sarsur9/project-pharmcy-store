@@ -52,33 +52,35 @@ const Button = styled.button`
     cursor: not-allowed;
   }
 `;
-
 const Error = styled.span`
   color: red;
 `;
-
 const Link = styled.a`
   margin: 5px 0px;
   font-size: 12px;
   text-decoration: underline;
   cursor: pointer;
 `;
-
 const Login = () => {
      const [username, setUsername] = useState("");
      const [email, setEmail] = useState("");
      const [password, setPassword] = useState("");
      const dispatch = useDispatch();
      const { isFetching, error } = useSelector((state) => state.user);
-     const handleClick = (e) => {
-       e.preventDefault();
-       login(dispatch, { username, email, password });
-     };
+    let loginErr = null;
+    const handleClick = async (e) => {
+      try {
+        e.preventDefault();
+        login(dispatch, { username, email, password });
+      } catch (err) {
+        console.log(err);
+        loginErr = err;
+      }
+    };
   return (
     <Container>
       <Wrapper>
         <Title>SIGN IN</Title>
-
         <Form>
           <Input
             placeholder="username/email"
@@ -91,8 +93,6 @@ const Login = () => {
             placeholder="password"
             onChange={(e) => setPassword(e.target.value)}
           ></Input>
-
-
           <Button onClick={handleClick} disabled={isFetching}>
             LOGIN
           </Button>

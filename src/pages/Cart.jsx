@@ -10,8 +10,6 @@ import { useEffect, useState } from "react";
 import { userRequest } from "../requestMethods";
 import { useHistory } from "react-router";
 
-const KEY = process.env.REACT_APP_STRIPE;
-
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -72,11 +70,8 @@ const Details = styled.div`
   justify-content: space-around;
 `;
 const ProductName = styled.span``;
-
 const ProductId = styled.span``;
-
 const ProductSize = styled.span``;
-
 const PriceDetail = styled.div`
   flex: 1;
   display: flex;
@@ -125,12 +120,9 @@ const Button = styled.button`
   color: white;
   font-weight: 600;
 `;
-
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [stripeToken, setStripeToken] = useState(null);
-
-
   const history = useHistory();
   const onToken = (token) => {
     console.log(token);
@@ -142,7 +134,7 @@ const Cart = () => {
       try {
         const res = await userRequest.post("/checkout/payment", {
           tokenId: stripeToken.id,
-          amount: 500,
+          amount: cart.total * 100,
         });
         history.push("/success", {
           stripeData: res.data,
@@ -154,7 +146,7 @@ const Cart = () => {
     };
     stripeToken && cart.total >= 1 && makeRequest();
     console.log(cart.total);
-  }, [stripeToken, cart.total, history]);
+  }, [cart, stripeToken, cart.total, history]);
   return (
     <Container>
       <Navbar />
