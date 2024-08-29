@@ -5,13 +5,10 @@ import React from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { logoutUser } from "../redux/apiCalls";
 import { logout } from "../redux/userRedux";
 import { clearCart } from "../redux/cartRedux";
-
-
-
 const Container = styled.div`
   height: 60px;
   ${mobile({ height: "50px" })}
@@ -49,7 +46,9 @@ const Center = styled.div`
   text-align: center;
 `;
 const Logo = styled.h1`
+  font-color: black;
   font-weight: bold;
+  cursor: pointer;
   ${mobile({ fontSize: "24px" })}
 `;
 const Right = styled.div`
@@ -85,13 +84,24 @@ const handleClick = async (e) => {
       <Wrapper>
         <Left>
           <Language>EN</Language>
+          {user && user.isAdmin && (
+            <MenuItem>
+              {" "}
+              <Link to="/AdminPanel">AdminPanel</Link>
+            </MenuItem>
+          )}
           {/* <SearchContainer>
             <Input placeholder="Search" />
             <Search style={{ color: "gray", fontSize: 18 }} />
           </SearchContainer>*/}
         </Left>
         <Center>
-          <Logo>Pharmacy-Online</Logo>
+          <Logo>
+            {" "}
+            <NavLink style={{ color: "black", textDecoration: "none" }} to="/">
+              Pharmacy-Online
+            </NavLink>
+          </Logo>
         </Center>
         <Right>
           {!user && (
@@ -108,7 +118,9 @@ const handleClick = async (e) => {
           {user && (
             <MenuItem>
               {" "}
-              <Link to="/" onClick={handleClick}>logout</Link>
+              <Link to="/" onClick={handleClick}>
+                logout
+              </Link>
             </MenuItem>
           )}
 

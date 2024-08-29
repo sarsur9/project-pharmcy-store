@@ -117,7 +117,7 @@ const Product = () => {
   };
    const handleClick = () => {
 if (size === "") setSize(product.size[0]);
-
+    
    dispatch(addProduct({ ...product, quantity, size }));
   };
 

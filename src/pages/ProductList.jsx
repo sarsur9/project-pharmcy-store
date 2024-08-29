@@ -8,8 +8,6 @@ import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import Products from "../components/Products";
 import { mobile } from "../responsive";
-
-
 const Container = styled.div`
   height: 60px;
 `;
@@ -36,10 +34,10 @@ const Select = styled.select`
   ${mobile({ margin: "10px 0px" })}
 `;
 const Option = styled.option``;
-
 const ProductList = () => {
     const location = useLocation();
     const cat = location.pathname.split("/")[2];
+    console.log(location);
     const [filters, setFilters] = useState({});
     const [sort, setSort] = useState("newest");
 
@@ -56,7 +54,7 @@ const ProductList = () => {
       <Announcement />
       <Title>{cat}</Title>
       <FilterContainer>
-        <Filter>
+        {/* <Filter>
           <FilterText>Filter Products:</FilterText>
           <Select name="category" onChange={handleFilters}>
             <Option disabled>Pick a Category</Option>
@@ -65,7 +63,7 @@ const ProductList = () => {
             <Option>Painkillers</Option>
             <Option>Skin Care</Option>
           </Select>
-        </Filter>
+        </Filter>*/}
         <Filter>
           <FilterText>Sort Products:</FilterText>
           <Select onChange={(e) => setSort(e.target.value)}>

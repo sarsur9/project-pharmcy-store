@@ -9,9 +9,7 @@ import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useState } from "react";
 import { userRequest } from "../requestMethods";
 import { useHistory } from "react-router";
-
 const Container = styled.div``;
-
 const Wrapper = styled.div`
   padding: 20px;
   ${mobile({ padding: "10px" })}
@@ -22,12 +20,13 @@ const Title = styled.h1`
 `;
 const Top = styled.div`
   display: flex;
-  align-items: center;
+  align-items: right;
   justify-content: space-between;
   padding: 20px;
 `;
 const TopButton = styled.button`
   padding: 10px;
+  float: right;
   font-weight: 600;
   cursor: pointer;
   border: ${(props) => props.type === "filled" && "none"};
@@ -108,18 +107,21 @@ const SummaryItem = styled.div`
   margin: 30px 0px;
   display: flex;
   justify-content: space-between;
-  font-weight: ${(props) => props.type === "total" && "200"};
-  font-size: ${(props) => props.type === "total" && "24px"};
+  font-weight: ${(props) => props.type === "total" && "1600"};
+  font-size: ${(props) => props.type === "total" && "20px"};
 `;
 const SummaryItemText = styled.span``;
 const SummaryItemPrice = styled.span``;
 const Button = styled.button`
   width: 100%;
   padding: 10px;
-  background-color: black;
-  color: white;
+  border: ${(props) => props.type === "filled" && "none"};
+  background-color: ${(props) =>
+    props.type === "filled" ? "black" : "transparent"};
+  color: ${(props) => props.type === "filled" && "white"};
   font-weight: 600;
 `;
+
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [stripeToken, setStripeToken] = useState(null);
@@ -152,14 +154,12 @@ const Cart = () => {
       <Navbar />
       <Announcement />
       <Wrapper>
-        <Title>YOUR CART</Title>
+        <Title>YOUR CART</Title>{" "}
         <Top>
-          <TopButton>CONTINUE SHOPPING</TopButton>
-          <TopTexts>
-            <TopText>Shopping Bag(2)</TopText>
-            <TopText>Your Wishlist (0)</TopText>
-          </TopTexts>
-          <TopButton type="filled">CHECKOUT NOW</TopButton>
+          <a href="/">
+            {" "}
+            <Button>CONTINUE SHOPPING </Button>
+          </a>
         </Top>
         <Bottom>
           <Info>
@@ -227,7 +227,7 @@ const Cart = () => {
                 "pk_test_51PluRQIKm3oxgWygISEtvjfiQGFSnMuFrHcbQueLHgK4UwuhzbF3ohk2tbOq998t9tqZI64O7vnYMUT16ZAUZXBD00ddJj75yu"
               }
             >
-              <Button>CHECKOUT NOW</Button>
+              <Button type="filled">CHECKOUT NOW</Button>
             </StripeCheckout>
           </Summary>
         </Bottom>

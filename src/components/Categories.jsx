@@ -1,8 +1,10 @@
 import styled from "styled-components";
-import React from "react";
-import { categories } from "../data";
+import { useEffect, useState } from "react";
+// import { categories } from "../data";
 import CategoriesItem from "./CategoriesItem";
 import { mobile } from "../responsive";
+import axios from "axios";
+
 
 const Container = styled.div`
   display: flex;
@@ -12,10 +14,21 @@ const Container = styled.div`
 `;
 
 const Categories = () => {
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    const getCategories = async () => {
+      try {
+        const res = await axios.get("http://localhost:8080/api/categories");
+        console.log(res);
+        setCategories(res.data);
+      } catch (err) {}
+    };
+    getCategories();
+  }, []);
   return (
     <Container>
       {categories.map((item) => (
-        <CategoriesItem item={item} key={item.id} />
+        <CategoriesItem item={item} key={item._id} />
       ))}
     </Container>
   );

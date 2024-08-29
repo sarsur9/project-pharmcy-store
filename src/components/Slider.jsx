@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { sliderItems } from "../data";
 import { mobile } from "../responsive";
-
 const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -92,7 +91,8 @@ const Slider = () => {
             <InfoContainer>
               <Title>{item.title}</Title>
               <Description> {item.desc}</Description>
-              <Button> SHOP NOW</Button>
+
+              {/* <Button> SHOP NOW</Button> */}
             </InfoContainer>
           </Slide>
         ))}
