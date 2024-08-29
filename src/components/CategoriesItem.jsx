@@ -2,7 +2,6 @@ import styled from "styled-components";
 import React from "react";
 import { mobile } from "../responsive";
 import { Link } from "react-router-dom";
-
 const Container = styled.div`
   flex: 1;
   margin: 3px;
@@ -28,8 +27,7 @@ const Info = styled.div`
 `;
 const Title = styled.h1`
   color: black;
-  margin-bottom: 10px;
-  font-weight: 700;
+  margin-bottom: 20px;
 `;
 const Button = styled.button`
   border: none;

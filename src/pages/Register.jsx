@@ -12,11 +12,10 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://i.pinimg.com/564x/63/e6/7c/63e67c40a5344f682b71c0d2c4e16225.jpg")
+    url("https://i.pinimg.com/474x/92/11/e4/9211e43b6dc98cc1a4bd8c8791d36f21.jpg")
       center;
   background-size: cover;
   display: flex;
-
   align-items: center;
   justify-content: center;
 `;
@@ -25,7 +24,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   width: 50%;
   padding: 20px;
-
   background-color: white;
   ${mobile({ width: "75% " })}
 `;
@@ -55,7 +53,6 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
 `;
-
 const Register = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -86,7 +83,6 @@ const Register = () => {
             placeholder="password"
             onChange={(e) => setPassword(e.target.value)}
           ></Input>
-
           <Agreement>
             By creating an account, I have read and agreed with the{" "}
             <b>PRIVACY POLICY</b>

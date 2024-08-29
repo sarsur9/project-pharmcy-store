@@ -25,7 +25,6 @@ const Container = styled.div`
 const Wrapper = styled.div`
   width: 55%;
   padding: 20px;
-
   background-color: white;
   display: flex 
  flex-direction:column
@@ -44,7 +43,6 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
 display:flex
-
   margin-bottom: 5px;
   flex-direction:column
   &:disabled {
@@ -82,10 +80,8 @@ const Select = styled.select`
   ${mobile({ margin: "10px 0px" })}
 `;
 const Option = styled.option``;
-
 const AdminPanel = () => {
   const user = useSelector((state) => state.user.currentUser);
-
   const dispatch = useDispatch();
   const [action, setAction] = useState("");
   const [title, setTitle] = useState("");
@@ -100,7 +96,6 @@ const AdminPanel = () => {
     const value = e.target.value;
     setAction(value);
   };
-
   const handleClickGet = async (e) => {
     e.preventDefault();
     await getUsers(dispatch);
@@ -183,7 +178,6 @@ const AdminPanel = () => {
               <button
                 onClick={async (e) => {
                   e.preventDefault();
-
                   await setSizes([
                     ...sizes,
                     document.getElementById("size").value,
@@ -197,7 +191,6 @@ const AdminPanel = () => {
                 size
               </button>
             </div>
-
             <Filter>
               <Select
                 onChange={(e) => {
@@ -205,7 +198,7 @@ const AdminPanel = () => {
                 }}
               >
                 <Option disabled>choose category</Option>
-                <Option value="OTS">OTS</Option>
+                <Option value="OTC">OTC</Option>
                 <Option value="Supplements">Supplements</Option>
                 <Option value="Prescribed Medicine">Prescribed Medicine</Option>
               </Select>
