@@ -9,11 +9,14 @@ import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useState } from "react";
 import { userRequest } from "../requestMethods";
 import { useHistory } from "react-router";
+
 const Container = styled.div``;
+
 const Wrapper = styled.div`
   padding: 20px;
   ${mobile({ padding: "10px" })}
 `;
+
 const Title = styled.h1`
   font-weight: 300;
   text-align: center;
