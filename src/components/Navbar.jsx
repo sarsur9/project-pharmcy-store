@@ -1,9 +1,9 @@
 import { Badge } from "@material-ui/core";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import { useDispatch } from "react-redux";
+import { mobile } from "../responsive";
 import React from "react";
 import styled from "styled-components";
-import { mobile } from "../responsive";
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { logoutUser } from "../redux/apiCalls";
@@ -25,11 +25,13 @@ const Left = styled.div`
   display: flex;
   align-items: center;
 `;
+
 const Language = styled.span`
   font-size: 14px;
   cursor: pointer;
   ${mobile({ display: "none" })}
 `;
+
 const SearchContainer = styled.div`
   border: 0.5px solid lightgray;
   display: flex;
@@ -45,6 +47,7 @@ const Center = styled.div`
   flex: 1;
   text-align: center;
 `;
+
 const Logo = styled.h1`
   font-color: black;
   font-weight: bold;
@@ -74,11 +77,12 @@ const Navbar = () => {
   const user = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
   const quantity = useSelector((state) => state.cart.quantity);
- console.log(user);
-const handleClick = async (e) => {
-  await dispatch(clearCart());
-  logoutUser(dispatch);
-};
+
+  const handleClick = async (e) => {
+    await dispatch(clearCart());
+    logoutUser(dispatch);
+  };
+
   return (
     <Container>
       <Wrapper>
@@ -90,10 +94,11 @@ const handleClick = async (e) => {
               <Link to="/AdminPanel">AdminPanel</Link>
             </MenuItem>
           )}
+
           {/* <SearchContainer>
             <Input placeholder="Search" />
             <Search style={{ color: "gray", fontSize: 18 }} />
-          </SearchContainer>*/}
+          </SearchContainer> */}
         </Left>
         <Center>
           <Logo>
@@ -123,7 +128,6 @@ const handleClick = async (e) => {
               </Link>
             </MenuItem>
           )}
-
           {user && (
             <Link to="/cart">
               <MenuItem>

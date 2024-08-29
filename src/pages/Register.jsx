@@ -5,8 +5,6 @@ import { useDispatch } from "react-redux";
 import { login, register } from "../redux/apiCalls";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
-
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -18,15 +16,16 @@ const Container = styled.div`
       center;
   background-size: cover;
   display: flex;
+
   align-items: center;
   justify-content: center;
 `;
-
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
   padding: 20px;
+
   background-color: white;
   ${mobile({ width: "75% " })}
 `;
@@ -56,17 +55,18 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
 `;
+
 const Register = () => {
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const dispatch = useDispatch();
-    const { isFetching, error } = useSelector((state) => state.user);
-    const handleClick = async (e) => {
-      e.preventDefault();
-      await register(dispatch, { username, email, password });
-      login(dispatch, { username, email, password });
-    };
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const { isFetching, error } = useSelector((state) => state.user);
+  const handleClick = async (e) => {
+    e.preventDefault();
+    await register(dispatch, { username, email, password });
+    login(dispatch, { username, email, password });
+  };
   return (
     <Container>
       <Wrapper>
@@ -86,6 +86,7 @@ const Register = () => {
             placeholder="password"
             onChange={(e) => setPassword(e.target.value)}
           ></Input>
+
           <Agreement>
             By creating an account, I have read and agreed with the{" "}
             <b>PRIVACY POLICY</b>

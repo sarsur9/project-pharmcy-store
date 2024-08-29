@@ -18,7 +18,6 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
 const Wrapper = styled.div`
   width: 25%;
   padding: 20px;
@@ -29,7 +28,6 @@ const Title = styled.h1`
   font-size: 24px;
   font-weight: 300;
 `;
-
 
 const Button = styled.button`
   width: 35%;
@@ -45,20 +43,18 @@ const Button = styled.button`
     cursor: not-allowed;
   }
 `;
-
 const Success = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  console.log(location);
+
+  dispatch(clearCart());
   const handleClick = (e) => {
     dispatch(clearCart());
   };
-
   return (
     <Container>
       <Wrapper>
         <Title>Thank you for you purchase!</Title>
-
         <Link to="/" onClick={handleClick}>
           <Button onClick={handleClick}>BACK TO SHOP</Button>
         </Link>
@@ -66,5 +62,4 @@ const Success = () => {
     </Container>
   );
 };
-
 export default Success;

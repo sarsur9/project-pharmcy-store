@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import React from "react";
-
 const Container = styled.div`
   height: 30px;
   background-color: royalblue;
@@ -13,7 +12,13 @@ const Container = styled.div`
 `;
 
 const Announcement = () => {
-  return <Container>$ Mega Deal! best deal, for real $</Container>;
+  return (
+    <Container>
+      {" "}
+      register as a new user or login with 'admin1' as username and password for
+      admin actions
+    </Container>
+  );
 };
 
 export default Announcement;

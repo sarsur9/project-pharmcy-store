@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+
 import Product from "./Product";
 import axios from "axios";
 
@@ -11,8 +12,7 @@ const Container = styled.div`
 `;
 
 
- const Products = ({ cat, filters, sort }) => {
-  console.log(cat);
+const Products = ({ cat, filters, sort }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
@@ -29,7 +29,6 @@ const Container = styled.div`
     };
     getProducts();
   }, [cat]);
-
   useEffect(() => {
     cat &&
       setFilteredProducts(
@@ -40,7 +39,6 @@ const Container = styled.div`
         )
       );
   }, [products, cat, filters]);
-
   useEffect(() => {
     if (sort === "newest") {
       setFilteredProducts((prev) =>
@@ -56,16 +54,16 @@ const Container = styled.div`
       );
     }
   }, [sort]);
-   return (
-    <Container>
 
-       {cat
+  return (
+    <Container>
+      {cat
         ? filteredProducts.map((item) => <Product item={item} key={item._id} />)
         : products
             .slice(0, 8)
             .map((item) => <Product item={item} key={item._id} />)}
     </Container>
-     );
+  );
 };
 
 

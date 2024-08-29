@@ -2,8 +2,6 @@ import styled from "styled-components";
 import React from "react";
 import { Send } from "@material-ui/icons";
 import { mobile } from "../responsive";
-
-
 const Container = styled.div`
   height: 60vh;
   background-color: #f5fbfd;
@@ -11,7 +9,6 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  ${mobile({ textAlign: "center" })}
 `;
 const Title = styled.h1`
   font-size: 70px;

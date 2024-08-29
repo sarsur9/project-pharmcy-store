@@ -1,6 +1,6 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import cartReducer from "./cartRedux";
 import userReducer from "./userRedux";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
 import {
   persistStore,
@@ -14,8 +14,6 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
-
-
 const persistConfig = {
   key: "root",
   version: 1,
@@ -23,7 +21,6 @@ const persistConfig = {
 };
 const rootReducer = combineReducers({ user: userReducer, cart: cartReducer });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>

@@ -1,12 +1,13 @@
 import { useLocation } from "react-router";
-import { getUsers, addProduct } from "../redux/apiCalls";
+import { getUsers, addProduct, getOrders } from "../redux/apiCalls";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-
+import { useEffect } from "react";
 import { mobile } from "../responsive";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../redux/cartRedux";
 import { useState } from "react";
+import { Category } from "@material-ui/icons";
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -21,10 +22,10 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
 const Wrapper = styled.div`
   width: 55%;
   padding: 20px;
+
   background-color: white;
   display: flex 
  flex-direction:column
@@ -35,7 +36,6 @@ const Title = styled.h1`
   font-size: 24px;
   font-weight: 300;
 `;
-
 const Button = styled.button`
   width: 45%;
   border: none;
@@ -44,7 +44,8 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
 display:flex
-  margin-bottom: 10px;
+
+  margin-bottom: 5px;
   flex-direction:column
   &:disabled {
     color: green;
@@ -63,7 +64,6 @@ const Filter = styled.div`
   margin: 20px;
   ${mobile({ margin: "0px 15px", display: "flex", flexDirection: "column" })}
 `;
-
 const FilterText = styled.span`
   font-size: 20px;
   font-weight: 600;
@@ -85,7 +85,7 @@ const Option = styled.option``;
 
 const AdminPanel = () => {
   const user = useSelector((state) => state.user.currentUser);
-  console.log(user);
+
   const dispatch = useDispatch();
   const [action, setAction] = useState("");
   const [title, setTitle] = useState("");
@@ -93,18 +93,22 @@ const AdminPanel = () => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
+  const [size, setSize] = useState();
+  const [sizes, setSizes] = useState([]);
+  const [color, setColor] = useState([]);
   const handleFilters = (e) => {
     const value = e.target.value;
-    console.log(value);
     setAction(value);
   };
 
   const handleClickGet = async (e) => {
     e.preventDefault();
     await getUsers(dispatch);
-    // console.log(category, description, imgUrl, title, price);
   };
-
+  const handleClickGetOrders = async (e) => {
+    e.preventDefault();
+    await getOrders(dispatch);
+  };
   const handleClickAddProduct = async (e) => {
     e.preventDefault();
     try {
@@ -114,11 +118,10 @@ const AdminPanel = () => {
         desc: description,
         categories: [category],
         price: price,
+        size: sizes,
+        color,
       });
-      console.log(category, description, imgUrl, title, price);
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
     alert(title + " has been added, go to shop to check it out");
   };
   return (
@@ -129,12 +132,18 @@ const AdminPanel = () => {
           <Select name="action" onChange={handleFilters}>
             <Option>choose action</Option>
             <Option>get all users</Option>
+            <Option>get all orders</Option>
             <Option>add product</Option>
           </Select>
         </Filter>
         {action === "get all users" && (
           <Form>
             <Button onClick={handleClickGet}>GET ALL USERS</Button>
+          </Form>
+        )}
+        {action === "get all orders" && (
+          <Form>
+            <Button onClick={handleClickGetOrders}>GET ALL ORDERS</Button>
           </Form>
         )}
         {action === "add product" && (
@@ -163,6 +172,32 @@ const AdminPanel = () => {
                 setDescription(e.target.value);
               }}
             ></Input>
+            <div>
+              <Input
+                placeholder="size "
+                id="size"
+                onChange={async (e) => {
+                  await setSize(e.target.value);
+                }}
+              ></Input>
+              <button
+                onClick={async (e) => {
+                  e.preventDefault();
+
+                  await setSizes([
+                    ...sizes,
+                    document.getElementById("size").value,
+                  ]);
+                  alert(
+                    document.getElementById("size").value +
+                      " has been added,you cana add another size"
+                  );
+                }}
+              >
+                size
+              </button>
+            </div>
+
             <Filter>
               <Select
                 onChange={(e) => {
@@ -170,9 +205,9 @@ const AdminPanel = () => {
                 }}
               >
                 <Option disabled>choose category</Option>
-                <Option>Clothing</Option>
-                <Option>Tech</Option>
-                <Option>Home Gym</Option>
+                <Option value="OTS">OTS</Option>
+                <Option value="Supplements">Supplements</Option>
+                <Option value="Prescribed Medicine">Prescribed Medicine</Option>
               </Select>
             </Filter>
             <Button onClick={handleClickAddProduct}>ADD</Button>
@@ -183,5 +218,4 @@ const AdminPanel = () => {
     </Container>
   );
 };
-
 export default AdminPanel;
