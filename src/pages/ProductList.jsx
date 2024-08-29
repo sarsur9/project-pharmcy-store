@@ -36,26 +36,34 @@ const Select = styled.select`
 const Option = styled.option``;
 
 const ProductList = () => {
-  const location = useLocation();
-  const cat = location.pathname.split("/")[2];
+    const location = useLocation();
+    const cat = location.pathname.split("/")[2];
+    const [filters, setFilters] = useState({});
+    const [sort, setSort] = useState("newest");
 
-  const [filters, setFilters] = useState({});
-  const [sort, setSort] = useState("newest");
-
-  const handleFilters = (e) => {
-    const value = e.target.value;
-    setFilters({
-      ...filters,
-      [e.target.name]: value,
-    });
-  };
+    const handleFilters = (e) => {
+      const value = e.target.value;
+      setFilters({
+        ...filters,
+        [e.target.name]: value,
+      });
+    };
   return (
     <Container>
       <Navbar />
       <Announcement />
       <Title>{cat}</Title>
       <FilterContainer>
-
+        <Filter>
+          <FilterText>Filter Products:</FilterText>
+          <Select name="category" onChange={handleFilters}>
+            <Option disabled>Pick a Category</Option>
+            <Option>Cold and Flu</Option>
+            <Option>Health</Option>
+            <Option>Painkillers</Option>
+            <Option>Skin Care</Option>
+          </Select>
+        </Filter>
         <Filter>
           <FilterText>Sort Products:</FilterText>
           <Select onChange={(e) => setSort(e.target.value)}>
@@ -71,4 +79,5 @@ const ProductList = () => {
     </Container>
   );
 };
+
 export default ProductList;

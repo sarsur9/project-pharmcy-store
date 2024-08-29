@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { publicRequest } from "../requestMethods";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../redux/cartRedux";
+
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -99,12 +100,14 @@ const Product = () => {
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState("");
-  const dispatch = useDispatch();
+
+   const dispatch = useDispatch();
 
   useEffect(() => {
     const getProduct = async () => {
       try {
         const res = await publicRequest.get("/products/find/" + id);
+
         setProduct(res.data);
       } catch {}
     };
@@ -117,13 +120,12 @@ const Product = () => {
       setQuantity(quantity + 1);
     }
   };
+   const handleClick = () => {
+if (size === "") setSize(product.size[0]);
 
-  const handleClick = () => {
-    if (size === "") setSize(product.size[0]);
-
-    dispatch(addProduct({ ...product, quantity, size }));
+   dispatch(addProduct({ ...product, quantity, size }));
   };
-
+   
   return (
     <Container>
       <Navbar />
@@ -137,17 +139,15 @@ const Product = () => {
           <Desc>{product.desc}</Desc>
           <Price>$ {product.price}</Price>
           <FilterContainer>
-
-            {product.size?.length > 0 && (
-              <Filter>
-                <FilterTitle>Size</FilterTitle>
-                <FilterSize onChange={(e) => setSize(e.target.value)}>
-                  {product.size?.map((s) => (
-                    <FilterSizeOption key={s}>{s}</FilterSizeOption>
-                  ))}
-                </FilterSize>
-              </Filter>
-            )}
+            <Filter></Filter>
+            <Filter>
+              <FilterTitle>Mg</FilterTitle>
+              <FilterSize onChange={(e) => setSize(e.target.value)}>
+                {product.size?.map((s) => (
+                  <FilterSizeOption key={s}>{s}</FilterSizeOption>
+                ))}
+              </FilterSize>
+            </Filter>
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
@@ -155,7 +155,7 @@ const Product = () => {
               <Amount>{quantity}</Amount>
               <Add onClick={() => handleQuantity("inc")} />
             </AmountContainer>
-            <Button onClick={handleClick}>ADD TO CART</Button>
+            <Button onClick={handleClick}>ADD TO CART</Button>{" "}
           </AddContainer>
         </InfoContainer>
       </Wrapper>
