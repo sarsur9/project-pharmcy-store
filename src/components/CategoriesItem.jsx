@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 import React from "react";
 import { mobile } from "../responsive";
@@ -21,6 +22,7 @@ const Info = styled.div`
   width: 100%;
   height: 90%;
   display: flex;
+
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -37,6 +39,7 @@ const Button = styled.button`
   cursor: pointer;
   font-weight: 600;
 `;
+
 const CategoriesItem = ({ item }) => {
   return (
     <Container>
@@ -50,4 +53,5 @@ const CategoriesItem = ({ item }) => {
     </Container>
   );
 };
+
 export default CategoriesItem;

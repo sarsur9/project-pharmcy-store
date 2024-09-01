@@ -1,3 +1,4 @@
+
 import { publicRequest, userRequest } from "../requestMethods";
 import { loginFailure, loginStart, loginSuccess, logout } from "./userRedux";
 
@@ -14,14 +15,17 @@ export const login = async (dispatch, user) => {
   dispatch(loginStart());
   try {
     const res = await publicRequest.post("/auth/login", user);
+
     dispatch(loginSuccess(res.data));
   } catch (err) {
     dispatch(loginFailure());
   }
 };
+
 export const logoutUser = async (dispatch, user) => {
   dispatch(logout());
 };
+
 export const getUsers = async (dispatch) => {
   try {
     const res = await userRequest.get("/users");
@@ -31,6 +35,7 @@ export const getUsers = async (dispatch) => {
     console.log(err);
   }
 };
+
 export const addProduct = async (dispatch, product) => {
   try {
     const res = await userRequest.post("/products", product);
@@ -41,6 +46,7 @@ export const addProduct = async (dispatch, product) => {
 export const makeOrder = async (dispatch, order) => {
   const res = await userRequest.post("/orders", order);
 };
+
 export const getOrders = async (dispatch) => {
   try {
     const res = await userRequest.get("/orders");

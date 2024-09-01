@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { useState } from "react";
@@ -16,14 +17,17 @@ const Container = styled.div`
       center;
   background-size: cover;
   display: flex;
+
   align-items: center;
   justify-content: center;
 `;
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
   padding: 20px;
+
   background-color: white;
   ${mobile({ width: "75% " })}
 `;
@@ -53,6 +57,7 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
 `;
+
 const Register = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -68,6 +73,7 @@ const Register = () => {
     <Container>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
+
         <Form>
           <Input placeholder="name"></Input>
           <Input placeholder="last name"></Input>
@@ -83,6 +89,7 @@ const Register = () => {
             placeholder="password"
             onChange={(e) => setPassword(e.target.value)}
           ></Input>
+
           <Agreement>
             By creating an account, I have read and agreed with the{" "}
             <b>PRIVACY POLICY</b>
@@ -95,4 +102,5 @@ const Register = () => {
     </Container>
   );
 };
+
 export default Register;

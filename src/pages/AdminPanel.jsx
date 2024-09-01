@@ -1,3 +1,4 @@
+
 import { useLocation } from "react-router";
 import { getUsers, addProduct, getOrders } from "../redux/apiCalls";
 import { Link } from "react-router-dom";
@@ -22,9 +23,11 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
 const Wrapper = styled.div`
   width: 55%;
   padding: 20px;
+
   background-color: white;
   display: flex 
  flex-direction:column
@@ -35,6 +38,7 @@ const Title = styled.h1`
   font-size: 24px;
   font-weight: 300;
 `;
+
 const Button = styled.button`
   width: 45%;
   border: none;
@@ -43,6 +47,7 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
 display:flex
+
   margin-bottom: 5px;
   flex-direction:column
   &:disabled {
@@ -62,6 +67,7 @@ const Filter = styled.div`
   margin: 20px;
   ${mobile({ margin: "0px 15px", display: "flex", flexDirection: "column" })}
 `;
+
 const FilterText = styled.span`
   font-size: 20px;
   font-weight: 600;
@@ -80,8 +86,10 @@ const Select = styled.select`
   ${mobile({ margin: "10px 0px" })}
 `;
 const Option = styled.option``;
+
 const AdminPanel = () => {
   const user = useSelector((state) => state.user.currentUser);
+
   const dispatch = useDispatch();
   const [action, setAction] = useState("");
   const [title, setTitle] = useState("");
@@ -96,6 +104,7 @@ const AdminPanel = () => {
     const value = e.target.value;
     setAction(value);
   };
+
   const handleClickGet = async (e) => {
     e.preventDefault();
     await getUsers(dispatch);
@@ -178,6 +187,7 @@ const AdminPanel = () => {
               <button
                 onClick={async (e) => {
                   e.preventDefault();
+
                   await setSizes([
                     ...sizes,
                     document.getElementById("size").value,
@@ -191,6 +201,7 @@ const AdminPanel = () => {
                 size
               </button>
             </div>
+
             <Filter>
               <Select
                 onChange={(e) => {
@@ -211,4 +222,5 @@ const AdminPanel = () => {
     </Container>
   );
 };
+
 export default AdminPanel;

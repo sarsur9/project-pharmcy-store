@@ -1,3 +1,4 @@
+
 import {
   FavoriteBorderOutlined,
   SearchOutlined,
@@ -20,6 +21,7 @@ const Info = styled.div`
   transition: all 0.5s ease;
   cursor: pointer;
 `;
+
 const Container = styled.div`
   flex: 1;
   margin: 5px;
@@ -34,6 +36,7 @@ const Container = styled.div`
     opacity: 1;
   }
 `;
+
 const Circle = styled.div`
   width: 200px;
   height: 200px;
@@ -41,10 +44,12 @@ const Circle = styled.div`
   background-color: white;
   position: absolute;
 `;
+
 const Image = styled.img`
   height: 75%;
   z-index: 2;
 `;
+
 const Icon = styled.div`
   width: 40px;
   height: 40px;
@@ -60,6 +65,7 @@ const Icon = styled.div`
     transform: scale(1.1);
   }
 `;
+
 const Product = ({ item }) => {
   return (
     <Container>
@@ -68,7 +74,6 @@ const Product = ({ item }) => {
       <Info>
         {/* <Icon>
           <ShoppingCartOutlined />
-
         </Icon> */}
         <Icon>
           <Link to={`/product/${item._id}`}>
@@ -80,4 +85,5 @@ const Product = ({ item }) => {
     </Container>
   );
 };
+
 export default Product;

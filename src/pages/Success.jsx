@@ -1,3 +1,4 @@
+
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -18,6 +19,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
 const Wrapper = styled.div`
   width: 25%;
   padding: 20px;
@@ -43,6 +45,7 @@ const Button = styled.button`
     cursor: not-allowed;
   }
 `;
+
 const Success = () => {
   const dispatch = useDispatch();
   const location = useLocation();
@@ -51,10 +54,12 @@ const Success = () => {
   const handleClick = (e) => {
     dispatch(clearCart());
   };
+
   return (
     <Container>
       <Wrapper>
         <Title>Thank you for you purchase!</Title>
+
         <Link to="/" onClick={handleClick}>
           <Button onClick={handleClick}>BACK TO SHOP</Button>
         </Link>
@@ -62,4 +67,5 @@ const Success = () => {
     </Container>
   );
 };
+
 export default Success;

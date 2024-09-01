@@ -1,4 +1,5 @@
 import logo from "./images/landing3.png";
+
 export const sliderItems = [
   {
     id: 1,
@@ -22,4 +23,3 @@ export const sliderItems = [
     bg: "white",
   },
 ];
-
