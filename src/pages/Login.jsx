@@ -1,4 +1,3 @@
-
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { useState } from "react";
@@ -19,7 +18,6 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
 const Wrapper = styled.div`
   width: 55%;
   padding: 20px;
@@ -40,7 +38,6 @@ const Input = styled.input`
   margin: 20px 10px 0px 0px;
   padding: 10px;
 `;
-
 const Button = styled.button`
   width: 35%;
   border: none;
@@ -55,18 +52,15 @@ const Button = styled.button`
     cursor: not-allowed;
   }
 `;
-
 const Link = styled.a`
   margin: 5px 0px;
   font-size: 12px;
   text-decoration: underline;
   cursor: pointer;
 `;
-
 const Error = styled.span`
   color: red;
 `;
-
 const Login = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -82,12 +76,10 @@ const Login = () => {
       loginErr = err;
     }
   };
-
   return (
     <Container>
       <Wrapper>
         <Title>SIGN IN</Title>
-
         <Form>
           <Input
             placeholder="username/email"
@@ -97,10 +89,10 @@ const Login = () => {
             }}
           ></Input>
           <Input
+            type="password"
             placeholder="password"
             onChange={(e) => setPassword(e.target.value)}
           ></Input>
-
           <Button onClick={handleClick} disabled={isFetching}>
             LOGIN
           </Button>
@@ -112,5 +104,4 @@ const Login = () => {
     </Container>
   );
 };
-
 export default Login;
